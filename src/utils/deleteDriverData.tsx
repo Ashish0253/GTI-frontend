@@ -1,16 +1,15 @@
-
 import axios from "axios"
 
-const getDriverData = async (uuid) => {
+const deleteDriverData = async (uuid) => {
 
   try {
-    const response = await axios.post("http://127.0.0.1:3001/get-driver-data", {
-      uuid: uuid
+    const response = await axios.delete("http://127.0.0.1:3001/delete-driver-data", {
+      params: { uuid: uuid }
     });
 
     //console.log(response);
 
-    return { success: true, data: response.data.data };
+    return { success: false, status: response.data.success, message: response.data.message };
   } catch (error) {
 
     if (axios.isAxiosError(error)) {
@@ -34,5 +33,5 @@ const getDriverData = async (uuid) => {
 
 
 
-export default getDriverData
+export default deleteDriverData
 
